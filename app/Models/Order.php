@@ -10,7 +10,8 @@ class Order extends Model
     use Notifiable;
     protected $fillable = [
         'user_id',
-        'totalPrice'
+        'totalPrice',
+        'OrderStatus'
     ];
 
     public function user(){

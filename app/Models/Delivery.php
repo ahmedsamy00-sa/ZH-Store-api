@@ -8,7 +8,10 @@ class Delivery extends Model
 {
     protected $fillable = [
         'user_id',
-        'order_id'
+        'order_id',
+        'address',
+        'DeliveryStatus' 
+
     ];
         public function user(){
         return $this->belongsTo(User::class);

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('order_id')->constrained('orders')->cascadeOnDelete();
+            $table->foreignId('trader_id')->constrained('traders')->cascadeOnDelete();
             $table->enum('DeliveryStatus', ['shipped', 'not shipped'])->default('not shipped');
             $table->string('address')->nullable();
             $table->timestamps();

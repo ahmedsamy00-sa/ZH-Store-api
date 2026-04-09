@@ -9,12 +9,15 @@ class Delivery extends Model
     protected $fillable = [
         'user_id',
         'order_id',
+        'trader_id',
         'address',
         'DeliveryStatus' 
-
     ];
         public function user(){
         return $this->belongsTo(User::class);
+    }
+        public function trader(){
+        return $this->belongsTo(Trader::class);
     }
         public function order(){
         return $this->belongsTo(Order::class);

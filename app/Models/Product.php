@@ -10,14 +10,18 @@ class Product extends Model
         'name',
         'desc',
         'price',
-        'category_id'
+        'category_id',
+        'trader_id'
     ];
 
     public function category(){
         return $this->belongsTo(Category::class);
     }
-        public function orders(){
-    return $this->belongsToMany(Order::class, 'order_items')->withPivot('quantity');
+    public function trader(){
+        return $this->belongsTo(Trader::class);
+    }
+    public function orders(){
+        return $this->belongsToMany(Order::class, 'order_items')->withPivot('quantity');
 }
     
 }

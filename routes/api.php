@@ -1,13 +1,27 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TraderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+//admin
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::patch('trader/confirm/{id}',[AdminController::class,'AdminConfirm']);
+});
+
+//trader
+Route::get('trader/',[TraderController::class,'index']);
+Route::get('deliver/trader/{id}',[TraderController::class,'getAllStoreDeliveries']);
+Route::post('trader/add/',[TraderController::class,'addTrader']);
+Route::post('trader/upload/',[TraderController::class,'addProductForTrader']);
+
 
 
 //Delivery
@@ -17,6 +31,8 @@ Route::post('deliver/create/',[DeliveryController::class,'store']);
 
 
 //categories
+Route::get('category/', [CategoryController::class, "index"]);
+Route::get('category/{id}', [CategoryController::class, "show"]);
 Route::post('category/create', [CategoryController::class, "store"]);
 
 
@@ -26,8 +42,8 @@ Route::get('notify/', [NotificationController::class, 'allNotifications']);
 
 //order Routes
 Route::get('order/',[OrderController::class,'index']);
-Route::post('order/create/{id}',[OrderController::class,'store']);
 Route::get('order/{id}',[OrderController::class,'show']);
+Route::post('order/create/{id}',[OrderController::class,'store']);
 
 
 

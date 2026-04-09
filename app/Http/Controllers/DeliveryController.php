@@ -25,6 +25,7 @@ public function store(Request $request)
     $request->validate([
         'user_id' => 'required|exists:users,id',
         'order_id' => 'required|exists:orders,id',
+        'trader_id' => 'required|exists:traders,id',
         'address' => 'required|string'
     ]);
 
@@ -39,6 +40,7 @@ public function store(Request $request)
     $delivery = Delivery::create([
         'user_id' => $request->user_id,
         'order_id' => $request->order_id,
+        'trader_id' => $request->trader_id,
         'address' => $request->address,
         'DeliveryStatus' => 'shipped'
     ]);
@@ -56,23 +58,36 @@ public function store(Request $request)
 
 
 
-//     /**
-//      * Display the specified resource.
-//      */
-//     public function show(Delivery $delivery)
-//     {
-//         //
-//     }
+
+    public function show($id)
+    {
+        $delivery = Delivery::findOrFail($id);
+        return response()->json($delivery, 200);
+    }
 
 
 
-//     /**
-//      * Update the specified resource in storage.
-//      */
-//     public function update(Request $request, Delivery $delivery)
-//     {
-//         //
-//     }
+
+
+    public function update(Request $request, $id)
+    {
+        $delivery = Delivery::find($id);
+        if(!$delivery) return response()->json(['message'=>'not found'], 404);
+        $request->validate([
+            'address'=>'required|string',
+            'user_id'=>'prohibited',
+            'order_id'=>'prohibited',
+        ]);
+
+        $delivery->update([
+            'address'=>$request->address
+        ]);
+
+        return response()->json([
+            'message'=>'the Address updated successfully',
+            'delivery'=>$delivery
+    ], 200);
+    }
 
 //     /**
 //      * Remove the specified resource from storage.

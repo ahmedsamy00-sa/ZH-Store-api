@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Delivery;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Trader;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,18 +16,30 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $user = User::all();
         return response()->json($user, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function getUserOrders($id){
+        $orders = Order::where('user_id',$id)->get();
+        return response()->json($orders, 200);
+        
+    }
+    public function getUserDeliveries($id){
+        $deliveries = Delivery::where('user_id',$id)->get();
+        return response()->json($deliveries, 200);
+    }
+    public function getAllTraders(){
+        $Traders = Trader::all();
+        return response()->json($Traders, 200);
+    }
+    public function getAllProducts(){
+        $Product = Product::all();
+        return response()->json($Product, 200);
+    }
+
     public function register(RegisterRequest $request)
     {
         $user = User::create([
@@ -33,7 +49,11 @@ class UserController extends Controller
             'password'=>Hash::make($request->password)
         ]);
 
-        return response()->json(['message' => 'user registered successfully', 'data' => $user], 201);
+        $token = $user->createToken('auth_token')->plainTextToken;
+        return response()->json([
+            'message' => 'user registered successfully',
+            'data' => $user,
+            "Token"=>$token], 201);
     }
 
 

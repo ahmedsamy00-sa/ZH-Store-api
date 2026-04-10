@@ -63,8 +63,8 @@ Route::post('verify/{id}',[UserController::class,'verify']);
 Route::post('register',[UserController::class,'register']);
 Route::post('login',[UserController::class,'login']);
 Route::get('/',[UserController::class, 'index']);
-Route::get('user/orders',[UserController::class, 'getUserOrders']);
-Route::get('/user/deliveries',[UserController::class, 'getUserDeliveries']);
+Route::get('user/orders/{id}',[UserController::class, 'getUserOrders']);
+Route::get('/user/deliveries/{id}',[UserController::class, 'getUserDeliveries']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();

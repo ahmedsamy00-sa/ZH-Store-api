@@ -107,7 +107,7 @@
               }
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/verify/1",
+              "raw": "http://127.0.0.1:8000/api/verify/{{user_id}}",
               "protocol": "http",
               "host": [
                 "127",
@@ -119,66 +119,7 @@
               "path": [
                 "api",
                 "verify",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "get all users",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "http://127.0.0.1:8000/api/",
-              "protocol": "http",
-              "host": [
-                "127",
-                "0",
-                "0",
-                "1"
-              ],
-              "port": "8000",
-              "path": [
-                "api",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "get admin users",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "http://127.0.0.1:8000/api/getUsers/2",
-              "protocol": "http",
-              "host": [
-                "127",
-                "0",
-                "0",
-                "1"
-              ],
-              "port": "8000",
-              "path": [
-                "api",
-                "getUsers",
-                "2"
+                "{{user_id}}"
               ]
             }
           },
@@ -205,7 +146,7 @@
               }
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/reset/2",
+              "raw": "http://127.0.0.1:8000/api/reset/{{user_id}}",
               "protocol": "http",
               "host": [
                 "127",
@@ -217,7 +158,7 @@
               "path": [
                 "api",
                 "reset",
-                "2"
+                "{{user_id}}"
               ]
             }
           },
@@ -244,7 +185,7 @@
               }
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/forget/1",
+              "raw": "http://127.0.0.1:8000/api/forget/{{user_id}}",
               "protocol": "http",
               "host": [
                 "127",
@@ -256,7 +197,7 @@
               "path": [
                 "api",
                 "forget",
-                "1"
+                "{{user_id}}"
               ]
             }
           },
@@ -298,12 +239,12 @@
           "response": []
         },
         {
-          "name": "get by id",
+          "name": "get product by id",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/product/1",
+              "raw": "http://127.0.0.1:8000/api/product/{{product _id}}",
               "protocol": "http",
               "host": [
                 "127",
@@ -315,7 +256,7 @@
               "path": [
                 "api",
                 "product",
-                "1"
+                "{{product _id}}"
               ]
             }
           },
@@ -371,7 +312,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/order/1",
+              "raw": "http://127.0.0.1:8000/api/order/{{order_id}}",
               "protocol": "http",
               "host": [
                 "127",
@@ -383,7 +324,7 @@
               "path": [
                 "api",
                 "order",
-                "1"
+                "{{order_id}}"
               ]
             }
           },
@@ -567,7 +508,7 @@
       "name": "tarder",
       "item": [
         {
-          "name": "get all",
+          "name": "get all traders",
           "request": {
             "method": "GET",
             "header": [],
@@ -591,9 +532,6 @@
         },
         {
           "name": "get store deliveries",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
           "request": {
             "method": "GET",
             "header": [
@@ -603,12 +541,8 @@
                 "type": "text"
               }
             ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"user_id\": \"1\",\r\n  \"order_id\": \"1\",\r\n  \"trader_id\":\"1\",\r\n  \"address\": \"ismailia\"\r\n}"
-            },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/deliver/trader/{{id}}",
+              "raw": "http://127.0.0.1:8000/api/trader/deliveries/{{tarder_id}}",
               "protocol": "http",
               "host": [
                 "127",
@@ -619,9 +553,9 @@
               "port": "8000",
               "path": [
                 "api",
-                "deliver",
                 "trader",
-                "{{id}}"
+                "deliveries",
+                "{{tarder_id}}"
               ]
             }
           },
@@ -706,23 +640,18 @@
           "response": []
         },
         {
-          "name": "confirm trader request",
+          "name": "get all orders for trader",
           "request": {
-            "method": "PATCH",
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json",
                 "type": "text"
-              },
-              {
-                "key": "Authorization",
-                "value": "bearer 9gMpOo4dLnKKyZANtOiyxQsksVrUeRUeTN37NO614720d143",
-                "type": "text"
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/trader/confirm/{{id}}",
+              "raw": "http://127.0.0.1:8000/api/trader/orders/{{trader_id}}",
               "protocol": "http",
               "host": [
                 "127",
@@ -734,8 +663,58 @@
               "path": [
                 "api",
                 "trader",
-                "confirm",
-                "{{id}}"
+                "orders",
+                "{{trader_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all products for trader",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/trader/products/{{trader_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "trader",
+                "products",
+                "{{trader_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all deliveries for tarder",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/trader/deliveries/{{trader_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "trader",
+                "deliveries",
+                "{{trader_id}}"
               ]
             }
           },
@@ -780,6 +759,173 @@
                 "api",
                 "category",
                 "create"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "get all users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get user orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/user/orders/{{user_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "user",
+                "orders",
+                "{{user_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get user deliveries",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/user/deliveries/{{user_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "user",
+                "deliveries",
+                "{{user_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "confirm trader request",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "bearer 9gMpOo4dLnKKyZANtOiyxQsksVrUeRUeTN37NO614720d143",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/trader/confirm/{{Trader_Id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "trader",
+                "confirm",
+                "{{Trader_Id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get admin users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/getUsers/{{admin_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "getUsers",
+                "{{admin_id}}"
               ]
             }
           },

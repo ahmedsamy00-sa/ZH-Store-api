@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OfferController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
@@ -17,10 +18,10 @@ Route::middleware(['auth:sanctum'])->group(function(){
 });
 
 //trader
-Route::get('trader/',[TraderController::class,'index']);
+Route::get('trader/',[TraderController::class,'getAllTraders']);
 Route::get('trader/deliveries/{id}',[TraderController::class,'getAllStoreDeliveries']);
 Route::get('trader/orders/{id}',[TraderController::class,'getAllStoreOrders']);
-Route::get('trader/products/{id}',[TraderController::class,'getAllStoreOrders']);
+Route::get('trader/products/{id}',[TraderController::class,'getAllStoreProducts']);
 Route::post('trader/add/',[TraderController::class,'addTrader']);
 Route::post('trader/upload/',[TraderController::class,'addProductForTrader']);
 
@@ -36,6 +37,12 @@ Route::post('deliver/create/',[DeliveryController::class,'store']);
 Route::get('category/', [CategoryController::class, "index"]);
 Route::get('category/{id}', [CategoryController::class, "show"]);
 Route::post('category/create', [CategoryController::class, "store"]);
+
+
+//offers
+Route::get('offer/', [OfferController::class, "index"]);
+Route::get('offer/discounts/{id}', [OfferController::class, "getDiscountedProducts"]);
+Route::post('offer/create/{id}',[OfferController::class, "store"]);
 
 
 //notifications

@@ -29,7 +29,6 @@ class TraderController extends Controller
         return response()->json($products, 200);
     }
 
-    
 
     public function addTrader(Request $request)
     {

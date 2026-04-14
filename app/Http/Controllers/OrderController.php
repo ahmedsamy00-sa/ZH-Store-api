@@ -23,6 +23,7 @@ public function store(Request $request, $id)
         'products' => 'required|array',
         'products.*.product_id' => 'required|exists:products,id',
         'products.*.quantity' => 'required|integer|min:1',
+        'trader_id'=>'required|exists:traders,id'
     ]);
     
     $total = 0;
@@ -33,7 +34,8 @@ public function store(Request $request, $id)
         
     $order = Order::create([
         'user_id' => $id,
-        'totalPrice'=> $total
+        'totalPrice'=> $total,
+        'trader_id'=>$request->trader_id
     ]);
     foreach ($request->products as $item) {
         $order->products()->attach($item['product_id'], [

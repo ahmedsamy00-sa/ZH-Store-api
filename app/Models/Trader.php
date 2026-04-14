@@ -20,5 +20,8 @@ class Trader extends Model
     public function order(){
         return $this->hasMany(Order::class);
     }
+    public function offer(){
+        return $this->hasMany(Offer::class);
+    }
 
 }

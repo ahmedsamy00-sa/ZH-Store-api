@@ -1,4 +1,4 @@
-# 🛒 E-Commerce Laravel API
+https://documenter.getpostman.com/view/42740215/2sBXqCQ4Xq# 🛒 E-Commerce Laravel API
 
 ![Laravel](https://img.shields.io/badge/Laravel-API-red)
 ![PHP](https://img.shields.io/badge/PHP-8.x-blue)
@@ -33,7 +33,7 @@ Handles products, orders, categories, notifications, and authentication.
 ## 🛠️ Installation
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/ahmedsamy00-sa/ZH-Store-api
 cd your-repo
 composer install
 cp .env.example .env
@@ -56,22 +56,24 @@ Authorization: Bearer {token}
 📡 API Endpoints
 
 👤 User:
-| Method | Endpoint           | Description     |
-| ------ | ------------------ | --------------- |
-| GET    | /api/              | Get all users   |
-| GET    | /api/getUsers/{id} | Admin users     |
-| POST   | /api/register      | Register        |
-| POST   | /api/login         | Login           |
-| POST   | /api/verify/{id}   | Verify          |
-| PUT    | /api/forget/{id}   | Forget password |
-| PUT    | /api/reset/{id}    | Reset password  |
+| Method | Endpoint                  | Description     |
+| ------ | ------------------------- | --------------- |
+| GET    | /api/                     | Get all users   |
+| GET    | /api/getUsers/{id}        | Admin users     |
+| POST   | /api/register             | Register        |
+| POST   | /api/login                | Login           |
+| POST   | /api/verify/{id}          | Verify          |
+| PUT    | /api/forget/{id}          | Forget password |
+| PUT    | /api/reset/{id}           | Reset password  |
+| GET    | /api/user/orders/{id}     | User orders     |
+| GET    | /api/user/deliveries/{id} | User deliveries |
+
 
 📦 Product
 | Method | Endpoint            | Description    |
 | ------ | ------------------- | -------------- |
 | GET    | /api/product        | All products   |
 | GET    | /api/product/{id}   | Single product |
-| POST   | /api/product/create | Create product |
 
 🧾 Order
 | Method | Endpoint               | Description  |
@@ -88,12 +90,14 @@ Authorization: Bearer {token}
 | POST   | /api/category/create | Create category |
 
 🛍️ Trader
-| Method | Endpoint                 | Description       |
-| ------ | ------------------------ | ----------------- |
-| GET    | /api/trader              | All traders       |
-| POST   | /api/trader/add          | Add trader        |
-| POST   | /api/trader/upload       | Upload product    |
-| GET    | /api/deliver/trader/{id} | Trader deliveries |
+| Method | Endpoint                    | Description       |
+| ------ | --------------------------- | ----------------- |
+| GET    | /api/trader                 | All traders       |
+| POST   | /api/trader/add             | Add trader        |
+| POST   | /api/trader/upload          | Upload product    |
+| GET    | /api/trader/products/{id}   | Trader products   |
+| GET    | /api/trader/orders/{id}     | Trader orders     |
+| GET    | /api/trader/deliveries/{id} | Trader deliveries |
 
 🚚 Delivery
 | Method | Endpoint            | Description     |
@@ -111,5 +115,35 @@ Authorization: Bearer {token}
 | ------ | ------------------------ | -------------- |
 | PATCH  | /api/trader/confirm/{id} | Confirm trader |
 
+💬 Chat System
+| Method | Endpoint              | Description               |
+| ------ | --------------------- | ------------------------- |
+| GET    | /api/conv             | All conversations         |
+| POST   | /api/conv/create/{id} | Create conversation       |
+| GET    | /api/message          | All messages              |
+| GET    | /api/message/{id}     | Messages for conversation |
+| POST   | /api/message/add/{id} | Send message              |
+
+📩 Contact
+| Method | Endpoint              | Description  |
+| ------ | --------------------- | ------------ |
+| GET    | /api/contact          | All messages |
+| POST   | /api/contact/add/{id} | Add message  |
+
+🖼️ Banner
+| Method | Endpoint             | Description |
+| ------ | -------------------- | ----------- |
+| GET    | /api/banner          | All banners |
+| POST   | /api/banner/add/{id} | Add banner  |
+
+🎁 Offers & Coupons
+| Method | Endpoint                  | Description         |
+| ------ | ------------------------- | ------------------- |
+| GET    | /api/offer                | All offers          |
+| GET    | /api/offer/discounts/{id} | Discounted products |
+| POST   | /api/offer/create/{id}    | Create offer        |
+| GET    | /api/coupon               | All coupons         |
+| POST   | /api/coupon/create/{id}   | Create coupon       |
+
 🧪 Testing
-Postman
+Postman Documentation : https://documenter.getpostman.com/view/42740215/2sBXqCQ4Xq

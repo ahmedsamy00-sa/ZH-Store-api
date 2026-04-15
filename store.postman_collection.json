@@ -2,6 +2,7 @@
   "info": {
     "_postman_id": "8e308b17-2abb-4ca2-806a-7fccdf6ca43d",
     "name": "store",
+    "description": "This collection covers the full backend API for a store/e-commerce platform, running locally at http://127.0.0.1:8000/api. It provides endpoints for managing the entire lifecycle of a store — from user registration and authentication to product listings, orders, deliveries, and trader management. The API is organized into the following functional modules:\n\n- **Auth** — User registration, login, password reset, verification, and forgot-password flows.\n- **User** — Retrieve user orders and deliveries by user ID.\n- **Admin** — Admin-level access to fetch and manage platform users.\n- **Trader** — Trader registration, confirmation, product uploads, order and delivery tracking per trader.\n- **Products** — Create and retrieve products available in the store.\n- **Categories** — Manage product categories.\n- **Orders** — Create orders and retrieve them by ID or in bulk.\n- **Delivery** — Create and list delivery records.\n- **Offers** — Create product offers per trader and retrieve discounts by category.\n- **Coupon** — Create and list discount coupons tied to products.\n- **Banner** — Add and retrieve promotional banners linked to offers.\n- **Messages & Conversations** — Send messages, retrieve conversation history, and manage user conversations.\n- **Contact** — Submit and retrieve contact/support requests.\n- **Notifications** — Retrieve platform notifications.\n\nBase URL: `http://127.0.0.1:8000/api`  \nVariables used: `{{user_id}}`, `{{trader_id}}`, `{{order_id}}`, `{{product_id}}`, `{{offer_id}}`, `{{conv_id}}`, `{{category_id}}`, `{{admin_id}}`",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "42740215",
     "_collection_link": "https://go.postman.co/collection/42740215-8e308b17-2abb-4ca2-806a-7fccdf6ca43d?source=collection_link"
@@ -23,7 +24,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\":\"ahmed\",\r\n    \"email\":\"samy@example.com\",\r\n    \"password\":\"password123\",\r\n    \"phone\":\"01003934228\",\r\n    \"role\":\"admin\"\r\n}",
+              "raw": "{\r\n    \"name\":\"youssef\",\r\n    \"email\":\"joe@example.com\",\r\n    \"password\":\"password123\",\r\n    \"phone\":\"01221100448\",\r\n    \"role\":\"admin\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -61,7 +62,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n\t\"phone\":\"01003934228\",\r\n  \"password\":\"password123\"\r\n    \r\n}",
+              "raw": "{\r\n\t\"phone\":\"01221100448\",\r\n  \"password\":\"password123\"\r\n    \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -261,45 +262,6 @@
             }
           },
           "response": []
-        },
-        {
-          "name": "add product",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n\"name\": \"samsung\",\r\n\"desc\": \"A new samsung\",\r\n\"price\": 100,\r\n\"category_id\": 1\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://127.0.0.1:8000/api/product/create",
-              "protocol": "http",
-              "host": [
-                "127",
-                "0",
-                "0",
-                "1"
-              ],
-              "port": "8000",
-              "path": [
-                "api",
-                "product",
-                "create"
-              ]
-            }
-          },
-          "response": []
         }
       ]
     },
@@ -380,7 +342,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"products\": [\r\n    {\"product_id\": 1, \"quantity\": 2}\r\n  ]\r\n\r\n}",
+              "raw": "{\r\n    \"trader_id\":1,\r\n  \"products\": [\r\n    {\"product_id\": 1, \"quantity\": 2}\r\n  ]\r\n\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -388,7 +350,7 @@
               }
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/order/create/{{id}}",
+              "raw": "http://127.0.0.1:8000/api/order/create/{{user_id}}",
               "protocol": "http",
               "host": [
                 "127",
@@ -401,7 +363,7 @@
                 "api",
                 "order",
                 "create",
-                "{{id}}"
+                "{{user_id}}"
               ]
             }
           },
@@ -511,7 +473,13 @@
           "name": "get all traders",
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "http://127.0.0.1:8000/api/trader",
               "protocol": "http",
@@ -613,7 +581,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n\"name\": \"samsung\",\r\n\"desc\": \"A new samsung\",\r\n\"price\": 100,\r\n\"category_id\": 1,\r\n\"trader_id\": 1\r\n}",
+              "raw": "{\r\n\"name\": \"iphone 12\",\r\n\"desc\": \"A new iphone 12\",\r\n\"price\": 120,\r\n\"stoke\":20,\r\n\"category_id\": 1,\r\n\"trader_id\": 1\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -674,7 +642,13 @@
           "name": "get all products for trader",
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "http://127.0.0.1:8000/api/trader/products/{{trader_id}}",
               "protocol": "http",
@@ -877,7 +851,7 @@
               },
               {
                 "key": "Authorization",
-                "value": "bearer 9gMpOo4dLnKKyZANtOiyxQsksVrUeRUeTN37NO614720d143",
+                "value": "bearer CP2s0CNggDjyNZFM5LbIAD1qLwlTUSGeqNVlRMCr17eb5cab",
                 "type": "text"
               }
             ],
@@ -926,6 +900,525 @@
                 "api",
                 "getUsers",
                 "{{admin_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Offers",
+      "item": [
+        {
+          "name": "add offer for a specific product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"black Friday\",\r\n    \"discount\":20,\r\n    \"desc\":\"black friday offers\",\r\n    \"product_id\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/offer/create/{{trader_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "offer",
+                "create",
+                "{{trader_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all offers for all traders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/offer/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "offer",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all discounts for a specific category",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/offer/discounts/{{category_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "offer",
+                "discounts",
+                "{{category_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Conversation",
+      "item": [
+        {
+          "name": "get all conversations",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"youssef\",\r\n    \"email\":\"joe@example.com\",\r\n    \"password\":\"password123\",\r\n    \"phone\":\"01221100448\",\r\n    \"role\":\"admin\"\r\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/conv",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "conv"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create conversation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"user2_id\":2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/conv/create/{{user_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "conv",
+                "create",
+                "{{user_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Messages",
+      "item": [
+        {
+          "name": "add message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"sender_id\":1,\r\n\t\"message\":\"I'm fine, thank you! How about you?\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/message/add/{{conv_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "message",
+                "add",
+                "{{conv_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get a specific conversation 's messages",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/message/{{conv_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "message",
+                "{{conv_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all messages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/message/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "message",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "item": [
+        {
+          "name": "get all contacts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/contact/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "contact",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add contact",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "b3d47c4e-5bac-437b-900d-957984612266",
+                  "src": "postman-cloud:///1f0e783c-47a8-4060-8083-842759018dc3"
+                },
+                {
+                  "key": "details",
+                  "value": "the images not loading",
+                  "type": "text",
+                  "uuid": "b068453d-8b3f-4233-8ce5-e44f778d6e11"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/contact/add/{{user_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "contact",
+                "add",
+                "{{user_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Banner",
+      "item": [
+        {
+          "name": "get all banners",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/banner/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "banner",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add banner",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"New Offer for the big fucking blackFriday\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/banner/add/{{offer_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "banner",
+                "add",
+                "{{offer_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Coupon",
+      "item": [
+        {
+          "name": "get all coupons",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/coupon/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "coupon",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add coupon",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/coupon/create/{{product_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "coupon",
+                "create",
+                "{{product_id}}"
               ]
             }
           },

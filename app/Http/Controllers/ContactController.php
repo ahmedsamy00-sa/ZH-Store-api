@@ -26,7 +26,7 @@ class ContactController extends Controller
         $uid = User::findOrFail($id);
         $request->validate([
             'details'=>'required|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'image' => 'nullable|image|mimes:jpg,jpeg,png'
         ]);
 
         $imagePath = null;

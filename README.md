@@ -1,4 +1,4 @@
-https://documenter.getpostman.com/view/42740215/2sBXqCQ4Xq# 🛒 E-Commerce Laravel API
+https://documenter.getpostman.com/view/42740215/2sBXqCQ4Xq# 🛒 E-Commerce Journal API
 
 ![Laravel](https://img.shields.io/badge/Laravel-API-red)
 ![PHP](https://img.shields.io/badge/PHP-8.x-blue)
